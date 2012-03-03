@@ -1,0 +1,47 @@
+<%= form_for @user, html: { class: 'well' } do |f| %>
+  
+  <% if @user.errors.any? %>
+
+    <% @user.errors.full_messages.each do |msg| %>
+      <div class="alert alert-error">
+        <%= msg %>
+      </div>
+    <% end %>
+
+  <% end %>
+
+  <div>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div> 
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </div>
+
+  <div> 
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div> 
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <div class="form-inline"> 
+    <%= f.check_box :active %>
+    <%= f.label :active, class: 'checkbox' %>
+  </div>
+  
+  <div class="form-inline"> 
+    <%= f.check_box :admin %>
+    <%= f.label :admin,  class: 'checkbox' %>
+  </div><br />
+
+  <div> 
+    <%= f.submit 'save', class: 'btn' %>
+  </div>
+
+<% end %>

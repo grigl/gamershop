@@ -1,3 +1,10 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+  layout 'application'
+
+  private
+
+  def redirect_to_by_js(path)
+    render js: "window.location = '#{path}'" 
+  end
+
 end

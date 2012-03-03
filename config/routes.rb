@@ -2,7 +2,13 @@ Gamershop::Application.routes.draw do
 
   root to: 'pages#index'
 
-  resources :users
+  scope :module => :admin do
+    scope 'admin' do
+      resources :users
+    end
+  end
+
+  resources :sessions
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Gamershop</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+  <%= render 'layouts/admin_header' %>
+</header>
+
+  <% flash.each do |name, msg| %>
+    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+      <a class="close" data-dismiss="alert">×</a>
+      <%= msg %>
+    </div>
+  <% end %>
+
+  <%= yield %>
+
+  <%= debug params %>
+
+</div>
+</body>
+
+</html>

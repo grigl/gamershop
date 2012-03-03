@@ -1,0 +1,18 @@
+<%= form_tag sessions_path, remote: true do %>
+
+  <div>
+    <%= label_tag 'Username or email:' %>
+    <%= text_field_tag :login %>
+  </div>
+
+  <div>
+    <%= label_tag 'Password:' %>
+    <%= password_field_tag :password %>
+  </div>
+
+  <div>
+    <%= submit_tag 'login', class: 'btn btn-primary' %>
+  </div>
+
+<% end %>
+
