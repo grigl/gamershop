@@ -9,6 +9,10 @@ Gamershop::Application.routes.draw do
   end
 
   resources :sessions
+  delete 'logout' => "sessions#destroy", as: 'logout'
+
+  resources :profiles
+  get 'activate_user/:activation_token' => 'profiles#activate', as: 'activate_profile'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

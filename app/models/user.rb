@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
                        format: { with: /^[-\w\._]+$/i, 
                                  message: "should only contain letters, numbers, or .-_" }
   validates :password, length: { minimum: 6 },
-                       presence: true, on: :create,
+                       presence: { on: :create },
                        allow_blank: true
 
   before_create :generate_auth_token
@@ -24,5 +24,15 @@ class User < ActiveRecord::Base
     begin
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column]) 
+  end
+
+  def admin?
+    self.admin
+  end
+
+  def activate
+    self.active = true
+    self.activation_token = nil
+    self.save!
   end
 end

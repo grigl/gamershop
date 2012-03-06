@@ -1,0 +1,4 @@
+Hello <%= @user.username %>!
+
+Follow this link to activate your accaunt:
+<%= activate_profile_url(activation_token: @user.activation_token, host: 'localhost:3000') %>

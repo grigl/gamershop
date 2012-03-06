@@ -9,7 +9,8 @@
   </div> 
 
     <div class="span5 auth-btn">
-        <button class="btn btn-inverse right">Logout</button>
+      <%= link_to 'logout', logout_path, method: :delete, class: "btn btn-inverse right" %>
+      <span class="right">You are logged as <%= current_user.username %></span>
     </div>
     
 </div>

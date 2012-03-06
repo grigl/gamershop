@@ -36,7 +36,11 @@ class Admin::UsersController < Admin::AdminController
     @user = User.find(params[:id])
     @user.destroy
 
-    redirect_to users_path, notice: "user was sucessfully deleted"
+    if @user == current_user
+      redirect_to root_path, notice: "you have sucessfully deleted yourself"
+    else
+      redirect_to users_path, notice: "user was sucessfully deleted"
+    end
   end
 
 end
