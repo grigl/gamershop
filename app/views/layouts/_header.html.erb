@@ -23,9 +23,9 @@
     <ul class="nav nav-top nav-pills">
       <li></li>
       <% { 'Home' => root_path,
-           'How to buy' => '#',
-           'Delivery' => '#',
-           'About as' => '#' }.each do |name, path| %>
+           'How to buy' => how_to_buy_path,
+           'Delivery' => delivery_path,
+           'About us' => about_us_path }.each do |name, path| %>
         <% if name == @title %>
           <li class="active"><%= link_to name, path %></li>
         <% else %>

@@ -2,6 +2,10 @@ Gamershop::Application.routes.draw do
 
   root to: 'pages#index'
 
+  match 'how_to_buy' => 'pages#how_to_buy', as: 'how_to_buy'
+  match 'delivery' => 'pages#delivery', as: 'delivery'
+  match 'about_us' => 'pages#about_us', as: 'about_us'
+
   scope :module => :admin do
     scope 'admin' do
       resources :users
