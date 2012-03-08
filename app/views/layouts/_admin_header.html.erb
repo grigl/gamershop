@@ -3,8 +3,14 @@
   <div class="span7">
     <ul class="nav nav-top nav-pills">
       <li></li>
-      <li class="active"><%= link_to 'Back to site', root_path %></li>
-      <li><%= link_to 'Menage users', users_path %></li>
+        <% { 'Back to site' => root_path,
+             'Menage users' => users_path, }.each do |name, path| %>
+          <% if name == @title %>
+            <li class="active"><%= link_to name, path %></li>
+          <% else %>
+            <li><%= link_to name, path %></li>
+          <% end %>
+        <% end %>
     </ul>
   </div> 
 

@@ -22,10 +22,16 @@
   <div class="span7">
     <ul class="nav nav-top nav-pills">
       <li></li>
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">How to buy</a></li>
-      <li><a href="#">Delivery</a></li>
-      <li><a href="#">About as</a></li>
+      <% { 'Home' => root_path,
+           'How to buy' => '#',
+           'Delivery' => '#',
+           'About as' => '#' }.each do |name, path| %>
+        <% if name == @title %>
+          <li class="active"><%= link_to name, path %></li>
+        <% else %>
+          <li><%= link_to name, path %></li>
+        <% end %>
+      <% end %>
     </ul>
   </div>  
 

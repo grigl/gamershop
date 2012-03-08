@@ -7,7 +7,10 @@
   <% end %>
 </div>
 
+<div class="span">
 <%= form_tag sessions_path, remote: true do %>
+
+  <h4>Enter your info:</h4><br />
 
   <div>
     <%= label_tag 'Username or email:' %>
@@ -29,4 +32,22 @@
   </div>
 
 <% end %>
+</div>
+
+<div class="span">
+<%= form_tag password_reset_path, remote: true do %>
+
+  <h4>Forgot password?</h4><br />
+
+  <div>
+    <%= label_tag 'Enter email:' %>
+    <%= text_field_tag :email %>
+  </div>
+
+  <div>
+    <%= submit_tag 'Submit', class: 'btn btn-primary' %>
+  </div>
+
+<% end %>
+</div>
 

@@ -28,7 +28,7 @@ gem 'rspec-rails', :group => [:test, :development]
 group :test do
   gem 'spork'
   gem 'factory_girl_rails'
-  gem 'capybara'
+  gem 'webrat'
 end
 
 # To use ActiveModel has_secure_password

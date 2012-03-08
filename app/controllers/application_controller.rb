@@ -13,7 +13,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def authorize
-    redirect_to root_url, alert: "You don't have permissions to access this" unless current_user && current_user.admin?
+    render 'shared/_404', status: 404, layout: false unless current_user
+  end
+
+  def admin_authorize
+    render 'shared/_404', status: 404, layout: false unless current_user && current_user.admin?
   end
 
 end

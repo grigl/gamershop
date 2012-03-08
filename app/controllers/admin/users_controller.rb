@@ -1,10 +1,12 @@
 class Admin::UsersController < Admin::AdminController
 
   def index
+    @title = 'Menage users'
     @users = User.order('created_at')
   end
 
   def new
+    @title = 'Create new user'
     @user = User.new
   end
 
@@ -19,6 +21,7 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def edit
+    @title = 'Edit user'
     @user = User.find(params[:id])
   end
 

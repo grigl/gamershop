@@ -13,6 +13,7 @@ Gamershop::Application.routes.draw do
 
   resources :profiles
   get 'activate_user/:activation_token' => 'profiles#activate', as: 'activate_profile'
+  post 'password_reset' => 'profiles#password_reset', as: 'password_reset'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

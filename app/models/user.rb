@@ -35,4 +35,11 @@ class User < ActiveRecord::Base
     self.activation_token = nil
     self.save!
   end
+
+  def generate_new_password
+    new_password = SecureRandom.base64(6)
+    self.password = new_password
+    self.password_confirmation = new_password
+    save!
+  end
 end
