@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
       end
     else
       flash.now[:alert] = "Wrong login or password"
-      render 'shared/reload_login_form.js.erb'
+      render 'shared/reload_login_form', formats: :js
     end
   end
 

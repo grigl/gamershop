@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
       flash[:notice] = "Your user was sucessfully created and activation mail was sent to your email address"
       redirect_to_by_js root_path
     else
-      render 'shared/reload_signup_form.js.erb'
+      render 'shared/reload_signup_form', formats: :js
     end
   end
 
@@ -30,7 +30,7 @@ class ProfilesController < ApplicationController
       redirect_to_by_js root_url 
     else
       flash.now[:alert] = "can't find user with such email"
-      render 'shared/reload_login_form.js.erb'
+      render 'shared/reload_login_form', formats: :js
     end
   end
 

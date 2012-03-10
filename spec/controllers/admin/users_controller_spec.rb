@@ -16,7 +16,7 @@ describe Admin::UsersController do
   describe "when signed in but not admin" do
 
     before(:each) do
-      @user = Factory.create(:user)
+      @user = Factory.create(:active_user)
       cookies[:auth_token] = @user.auth_token
     end
 

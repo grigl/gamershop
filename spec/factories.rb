@@ -5,11 +5,15 @@ FactoryGirl.define do
     sequence(:username)     { |n| "user_#{n}" }
     password                'secret'
     password_confirmation   { |u| u.password }
-    active                  true
 
-    factory :admin do
-      admin true
-    end 
+    factory :active_user do
+      active   true
+    
+      factory :admin do
+        admin true
+      end 
+
+    end
     
   end
 
