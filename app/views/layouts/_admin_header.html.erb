@@ -4,7 +4,8 @@
     <ul class="nav nav-top nav-pills">
       <li></li>
         <% { 'Back to site' => root_path,
-             'Menage users' => users_path, }.each do |name, path| %>
+             'Menage users' => users_path,
+             'Menage Products' => products_path }.each do |name, path| %>
           <% if name == @title %>
             <li class="active"><%= link_to name, path %></li>
           <% else %>

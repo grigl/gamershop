@@ -17,4 +17,15 @@ FactoryGirl.define do
     
   end
 
+  factory :product, :class => Product do
+    sequence(:title)            { |n| "Best game number #{n}" }
+    description                 "This is the best game in the world"
+    price                       10.99
+    platform                    'PC'
+    genre                       'RPG'
+    publisher                   'Interplay Entertainment'
+    developer                   'Valve Software'
+    image_url                   'images/best.jpg'
+  end
+
 end

@@ -1,0 +1,38 @@
+<h1>Products</h1>
+
+<table class="table well table-bordered">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>title</th>
+      <th>price</th>
+      <th>platform</th>
+      <th>genre</th>
+      <th>description</th>
+      <th>developer</th>
+      <th>publisher</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+
+  <% @products.each do |product| %>
+    <tr>
+      <th><%= product.id %></th>
+      <th><%= product.title %></th>
+      <th><%= product.price %></th>
+      <th><%= product.platform %></th>
+      <th><%= product.genre %></th>
+      <th><%= product.description %></th>
+      <th><%= product.developer %></th>
+      <th><%= product.publisher %></th>
+      <th><%= link_to 'edit', edit_product_path(product) %></th>
+      <th><%= link_to 'delete', product, method: :delete, confirm: 'Are you sure?' %></th>
+    </tr>
+  <% end %>
+
+  </tbody>
+</table>
+
+<%= link_to 'new product', new_product_path, class: 'btn' %>

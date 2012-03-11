@@ -12,6 +12,12 @@ Gamershop::Application.routes.draw do
     end
   end
 
+  scope :module => :admin do
+    scope 'admin' do
+      resources :products
+    end
+  end
+
   resources :sessions
   delete 'logout' => "sessions#destroy", as: 'logout'
 
