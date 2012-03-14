@@ -2,7 +2,7 @@ class Admin::UsersController < Admin::AdminController
 
   def index
     @title = 'Menage users'
-    @users = User.order('created_at')
+    @users = User.page(params[:page]).per_page(30).order('created_at')
   end
 
   def new

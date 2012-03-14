@@ -1,6 +1,24 @@
+def platform_routes
+  platform_routes = /#{Product.platforms.join('|')}/
+end
+
+def genre_routes
+  genre_routes = /#{Product.genres.join('|')}/
+end
+
 Gamershop::Application.routes.draw do
 
-  root to: 'pages#index'
+  root to: 'store#index'
+
+  match '(:platform)/(:genre)' => 'store#index', constraints: {
+                                                   platform: platform_routes,
+                                                   genre: genre_routes }, as: 'store'
+  match ':platform/:genre/:id' => 'store#show', constraints: {
+                                                   platform: platform_routes,
+                                                   genre: genre_routes,
+                                                   :id => /\d+/ }, as: 'store_item'
+
+  post 'add_to_busket/:id' => 'line_items#create', as: 'add_to_busket'
 
   match 'how_to_buy' => 'pages#how_to_buy', as: 'how_to_buy'
   match 'delivery' => 'pages#delivery', as: 'delivery'
@@ -9,12 +27,9 @@ Gamershop::Application.routes.draw do
   scope :module => :admin do
     scope 'admin' do
       resources :users
-    end
-  end
-
-  scope :module => :admin do
-    scope 'admin' do
       resources :products
+
+      match '/' => 'users#index'
     end
   end
 

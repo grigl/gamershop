@@ -1,36 +1,42 @@
 <h1>Users</h1>
 
-<table class="table well table-bordered">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>email</th>
-      <th>username</th>
-      <th>active</th>
-      <th>admin</th>
-      <th>created_at</th>
-      <th>updated_at</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="table well table-bordered">
+  <div>
+    <%= link_to 'new user', new_user_path, class: 'btn' %>
+  </div></br>
+  <div>
+    <%= will_paginate @users, container: false %>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>email</th>
+        <th>username</th>
+        <th>active</th>
+        <th>admin</th>
+        <th>created_at</th>
+        <th>updated_at</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
 
-  <% @users.each do |user| %>
-    <tr>
-      <th><%= user.id %></th>
-      <th><%= user.email %></th>
-      <th><%= user.username %></th>
-      <th><%= user.active %></th>
-      <th><%= user.admin %></th>
-      <th><%= user.created_at %></th>
-      <th><%= user.updated_at %></th>
-      <th><%= link_to 'edit', edit_user_path(user) %></th>
-      <th><%= link_to 'delete', user, method: :delete, confirm: 'Are you sure?' %></th>
-    </tr>
-  <% end %>
+    <% @users.each do |user| %>
+      <tr>
+        <th><%= user.id %></th>
+        <th><%= user.email %></th>
+        <th><%= user.username %></th>
+        <th><%= user.active %></th>
+        <th><%= user.admin %></th>
+        <th><%= user.created_at %></th>
+        <th><%= user.updated_at %></th>
+        <th><%= link_to 'edit', edit_user_path(user) %></th>
+        <th><%= link_to 'delete', user, method: :delete, confirm: 'Are you sure?' %></th>
+      </tr>
+    <% end %>
 
-  </tbody>
-</table>
-
-<%= link_to 'new user', new_user_path, class: 'btn' %>
+    </tbody>
+  </table>
+</div>

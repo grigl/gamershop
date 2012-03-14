@@ -7,6 +7,7 @@ gem 'rails', '3.2.1'
 
 gem 'sqlite3'
 
+gem 'will_paginate'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -25,6 +26,7 @@ end
 gem 'jquery-rails'
 
 gem 'rspec-rails', :group => [:test, :development]
+gem 'faker', group: :development
 group :test do
   gem 'spork'
   gem 'factory_girl_rails'

@@ -1,0 +1,62 @@
+<div class="well">
+  <div class="span8"></div>
+  <div class="span4"></div>
+</div>
+
+<div class="well">
+  <ul class="nav nav-top nav-tabs">
+    <% Product.platforms.each do |platform| %>
+      <% if platform == params[:platform] %>
+        <li class="active">
+          <%= link_to "#{platform} games", store_path(platform: platform, genre: params[:genre]) %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "#{platform} games", store_path(platform: platform, genre: params[:genre]) %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+
+  <% if params[:platform] %>
+    <ul class="nav nav-top nav-tabs">
+      <% if params[:genre] %>
+        <li><%= link_to "All", store_path(platform: params[:platform], genre: '') %></li>
+      <% else %>
+        <li class="active"><%= link_to "All", store_path(platform: params[:platform]) %></li>
+      <% end %>
+
+      <% Product.genres.each do |genre| %>
+        <% if genre == params[:genre] %>
+          <li class="active">
+            <%= link_to "#{genre}", store_path(platform: params[:platform], genre: genre) %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to "#{genre}", store_path(platform: params[:platform], genre: genre) %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
+
+
+  <% @products.each do |product| %>
+    <ul class="thumbnails left">
+      <li class="span3">
+        <div class="thumbnail">
+          <%= image_tag product.image_url %>
+          <h2 class="left"><%= product.price %> руб.</h2>
+          <div class="right">
+            <%= link_to 'Add to busket', add_to_busket_path(product), method: :post, class: 'btn btn-success' %>
+          </div>
+          <p style="clear:both;"><%= link_to "move to product's page", store_item_path(
+                                                         platform: product.platform,
+                                                         genre: product.genre,
+                                                         id: product.id ) %></p>
+        </div>
+      </li>
+    </ul>
+  <% end %>
+  <div style="clear:left;"></div>
+</div>

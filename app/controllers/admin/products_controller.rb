@@ -1,8 +1,8 @@
 class Admin::ProductsController < Admin::AdminController
 
   def index
-    @title = 'Menage Products'
-    @products = Product.order('title')
+    @title = 'Menage products'
+    @products = Product.page(params[:page]).per_page(30).order('title')
   end
 
   def new

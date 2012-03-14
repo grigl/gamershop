@@ -24,17 +24,22 @@
 
   <div> 
     <%= f.label :platform %>
-    <%= f.text_field :platform %>
+    <%= f.select :platform, Product.platforms %>
+  </div>
+
+  <div> 
+    <%= f.label :released_date %>
+    <%= f.text_field :released_date %>
   </div>
 
   <div> 
     <%= f.label :genre %>
-    <%= f.text_field :genre %>
+    <%= f.select :genre, Product.genres %>
   </div>
 
   <div> 
     <%= f.label :description %>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, rows: 20, class: 'span4' %>
   </div>
 
   <div> 
@@ -45,6 +50,11 @@
   <div> 
     <%= f.label :developer %>
     <%= f.text_field :developer %>
+  </div>
+
+  <div> 
+    <%= f.label :image_url %>
+    <%= f.text_field :image_url %>
   </div>  
 
   <div> 

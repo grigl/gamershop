@@ -41,8 +41,8 @@ describe Admin::ProductsController do
 
       it "should have the right title and active link" do
         get :index
-        response.should have_selector('title', content: "#{@base_title} | Menage Products")
-        response.should have_selector('li.active a', content: 'Menage Products')
+        response.should have_selector('title', content: "#{@base_title} | Menage products")
+        response.should have_selector('li.active a', content: 'Menage products')
       end
 
     end

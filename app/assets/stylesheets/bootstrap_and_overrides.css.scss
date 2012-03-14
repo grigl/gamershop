@@ -32,16 +32,11 @@ header {
     }
   }
 
-  .right {
-    float:right;
-  }
-
   .search-query {
     margin-right:10px;
   }
 
 }
-
 
 .field_with_errors {
   
@@ -51,8 +46,29 @@ header {
   
 }
 
+.right {
+  float:right;
+}
+
+.left {
+  float:left;
+}
+
+.clear_left {
+  clear:left;
+}
+
 .modal {
   display: none;
+}
+
+.thumbnail {
+  background-color:white;
+  margin:2px;
+
+  .btn-success {
+    margin-top:5px;
+  }
 }
 
   
