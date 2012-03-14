@@ -1,6 +1,7 @@
 class StoreController < ApplicationController
 
   def index
+    @cart = current_cart
     @title = "Home"
     products = Product
     if params[:platform]

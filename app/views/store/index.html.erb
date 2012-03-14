@@ -1,6 +1,14 @@
 <div class="well">
   <div class="span8"></div>
-  <div class="span4"></div>
+  <div class="span4">
+    <% if @cart.line_items.any? %>
+      <% @cart.line_items.each do |line_item| %>
+        <%= line_item.product.title %><%= line_item.product.price %>
+      <% end %>
+    <% else %>
+      Your cart is empty
+    <% end %>
+  </div>
 </div>
 
 <div class="well">
