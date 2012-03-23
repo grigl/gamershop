@@ -18,7 +18,12 @@ Gamershop::Application.routes.draw do
                                                    genre: genre_routes,
                                                    :id => /\d+/ }, as: 'store_item'
 
-  post 'add_to_busket/:id' => 'line_items#create', as: 'add_to_busket'
+  post 'add_to_cart/:id' => 'line_items#create', as: 'add_to_cart'
+  resources :line_items
+
+  resources :carts
+
+  post 'zzz/:id' => 'carts#zzz', as: 'zzz'
 
   match 'how_to_buy' => 'pages#how_to_buy', as: 'how_to_buy'
   match 'delivery' => 'pages#delivery', as: 'delivery'
@@ -33,10 +38,15 @@ Gamershop::Application.routes.draw do
     end
   end
 
+  resources :orders
+  get 'profile/orders/:id' => 'orders#show', as: 'order'
+
   resources :sessions
   delete 'logout' => "sessions#destroy", as: 'logout'
 
   resources :profiles
+  get 'profile' => "profiles#show", as: 'profile'
+
   get 'activate_user/:activation_token' => 'profiles#activate', as: 'activate_profile'
   post 'password_reset' => 'profiles#password_reset', as: 'password_reset'
   # The priority is based upon order of creation:

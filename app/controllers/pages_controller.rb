@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
-
+  before_filter :current_cart
+  
   def index
     @title = 'Home'
   end

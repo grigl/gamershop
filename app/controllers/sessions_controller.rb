@@ -6,7 +6,8 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       if params[:remember_me]
         cookies.permanent[:auth_token] = user.auth_token
-        cookies[:permanent_session] = true
+        cookies.permanent[:permanent_session] = true
+        cookies.permanent[:cart_id] = cookies[:cart_id] if cookies[:cart_id]
       else
         cookies[:auth_token] = user.auth_token
       end
@@ -24,7 +25,12 @@ class SessionsController < ApplicationController
 
   def destroy
     cookies.delete(:auth_token) if cookies[:auth_token]
-    cookies.delete(:permanent_session) if cookies[:permanent_session]
+    if cookies[:permanent_session]
+      cookies.delete(:permanent_session) 
+      cart_id = cookies[:cart_id]
+      cookies.delete(:cart_id)
+      cookies[:cart_id] = cart_id
+    end
     redirect_to root_path, notice: "You sucessfully logged out"
   end
 

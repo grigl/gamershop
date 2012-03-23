@@ -1,0 +1,37 @@
+<script type="text/javascript" charset="utf-8">
+    $(function() {
+        $("#checkout_b").click(function() {
+          $('#order_modal').html('<%=j render 'orders/order_form' %>')
+        })
+      })  
+</script>
+
+<table class="table table-bordered">
+      <% if @cart.line_items.any? %>
+        <legend>Your cart <button id="checkout_b" class="btn btn-info right" data-toggle="modal" href="#order_modal">Checkout</button></legend>
+          <tbody>
+        <% @cart.line_items.first(3).each do |line_item| %>
+          <tr>
+            <th><%= line_item.product.title %></th>
+            <th><%= line_item.product.price %></th>
+            <th><%= line_item.quantity %></th>
+          </tr>
+        <% end %>
+      <% else %>
+        <legend>Your cart</legend>
+          <tbody>
+            <tr>
+              <th>Cart is empty</th>
+            </tr>
+      <% end %>
+  </tbody>
+</table>
+  <% if @cart.line_items.any? %>
+    <% if @cart.line_items.count > 3 %>
+      And some more products for a total price of:</br> 
+    <% else %>
+      Total price:</br>
+    <% end %>
+      <button class="btn right" data-toggle="modal" href="#cart_modal">Edit cart</button>
+      <h3 class="red"><%= @cart.total_price %> rub.</h3>
+  <% end %>

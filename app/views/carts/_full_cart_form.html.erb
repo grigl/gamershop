@@ -1,0 +1,39 @@
+<a class="close" data-dismiss="modal">×</a>
+<h3>Your cart</h3>
+
+<script type="text/javascript" charset="utf-8">
+    $(function() {
+        $("#checkout_btn").click(function() {
+          $('#order_modal').html('<%=j render 'orders/order_form' %>')
+        })
+      })  
+</script>
+
+<% if @cart.line_items.any? %>
+  <table class="table table-bordered">
+    <tbody>
+    <% @cart.line_items.each do |line_item| %>
+      
+      <tr>
+        <th><%= line_item.product.title %></th>
+        <th><%= line_item.product.price %></th>
+        <th>
+          <%= form_for line_item, remote: true do |f| %>
+              <%= f.text_field :quantity, onchange: 'this.form.submit.click()' %>
+              <%= f.submit '', id: 'submit', class: 'hidden' %>
+          <% end %>
+        </th>
+      </tr>
+      
+    <% end %>
+    </tbody>
+  </table>
+    
+  <button id="checkout_btn" class="btn btn-info right" data-dismiss="modal" data-toggle="modal" href="#order_modal" >Checkout</button>
+  <%= button_to 'Clear cart', @cart, method: :delete, confirm: 'Are you sure?', remote: true %>
+  Total price: <h3 class="red"><%= @cart.total_price %> rub.</h3>
+<% else %>
+  <table class="table table-bordered">
+    <tbody><tr><th>Cart is empty</th></tr></tbody>
+  </table>
+<% end %>

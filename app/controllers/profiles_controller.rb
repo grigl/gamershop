@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  before_filter :authorize, only: [:show]
 
   def create
     @user = User.new(params[:user])
@@ -32,6 +33,10 @@ class ProfilesController < ApplicationController
       flash.now[:alert] = "can't find user with such email"
       render 'shared/reload_login_form', formats: :js
     end
+  end
+
+  def show
+    @user = current_user
   end
 
 end

@@ -5,7 +5,7 @@
     <%= link_to 'new product', new_product_path, class: 'btn' %>
   </div></br>
   <div>
-    <%= will_paginate @products, container: false %>
+    <%= will_paginate @products %>
   </div>
   <table>
     <thead>

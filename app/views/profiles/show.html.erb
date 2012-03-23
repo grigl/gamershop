@@ -1,0 +1,44 @@
+<div class="well">
+
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#orders" data-toggle="tab">Orders</a></li>
+  <li><a href="#orders_history" data-toggle="tab">Orders history</a></li>
+  <li><a href="#settings" data-toggle="tab">Settings</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="orders">
+    <table class="table">
+      <legend>Orders</legend>
+      <tbody>
+        <% @user.orders.unpaid.order('created_at').each do |order| %>
+          <tr>
+            <th><%= order.created_at.strftime("%m/%d/%Y") %></th>
+            <th><%= order.line_items.first(10).map { |item| "#{item.product.title} x #{item.quantity}" }.join(', ').truncate(100) %></th>
+            <th><%= order.total_price %> rub.</th>
+            <th><%= link_to 'show', order %></th>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="tab-pane" id="orders_history">
+    <table class="table">
+      <legend>Orders history:</legend>
+      <tbody>
+        <% @user.orders.paid.order('created_at').each do |order| %>
+          <tr>
+            <th><%= order.created_at.strftime("%m/%d/%Y") %></th>
+            <th><%= order.line_items.first(10).map { |item| "#{item.product.title} x #{item.quantity}" }.join(', ').truncate(100) %></th>
+            <th><%= order.total_price %> rub.</th>
+            <th><%= link_to 'show', order %></th>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="tab-pane" id="settings">...</div>
+</div>
+
+</div>
+

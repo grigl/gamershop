@@ -1,62 +1,19 @@
-<div class="well">
-  <div class="span8"></div>
-  <div class="span4">
-    <% if @cart.line_items.any? %>
-      <% @cart.line_items.each do |line_item| %>
-        <%= line_item.product.title %><%= line_item.product.price %>
-      <% end %>
-    <% else %>
-      Your cart is empty
-    <% end %>
-  </div>
+<div class="span4 right well" id="cart_form_container">
+  <%= render 'carts/cart_form' %>
 </div>
+<div style="clear:right;"></div>
 
 <div class="well">
-  <ul class="nav nav-top nav-tabs">
-    <% Product.platforms.each do |platform| %>
-      <% if platform == params[:platform] %>
-        <li class="active">
-          <%= link_to "#{platform} games", store_path(platform: platform, genre: params[:genre]) %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to "#{platform} games", store_path(platform: platform, genre: params[:genre]) %>
-        </li>
-      <% end %>
-    <% end %>
-  </ul>
-
-  <% if params[:platform] %>
-    <ul class="nav nav-top nav-tabs">
-      <% if params[:genre] %>
-        <li><%= link_to "All", store_path(platform: params[:platform], genre: '') %></li>
-      <% else %>
-        <li class="active"><%= link_to "All", store_path(platform: params[:platform]) %></li>
-      <% end %>
-
-      <% Product.genres.each do |genre| %>
-        <% if genre == params[:genre] %>
-          <li class="active">
-            <%= link_to "#{genre}", store_path(platform: params[:platform], genre: genre) %>
-          </li>
-        <% else %>
-          <li>
-            <%= link_to "#{genre}", store_path(platform: params[:platform], genre: genre) %>
-          </li>
-        <% end %>
-      <% end %>
-    </ul>
-  <% end %>
-
+  <%= render 'nav' %>
 
   <% @products.each do |product| %>
     <ul class="thumbnails left">
       <li class="span3">
         <div class="thumbnail">
           <%= image_tag product.image_url %>
-          <h2 class="left"><%= product.price %> руб.</h2>
+          <h2 class="left"><%= product.price %> rub.</h2>
           <div class="right">
-            <%= link_to 'Add to busket', add_to_busket_path(product), method: :post, class: 'btn btn-success' %>
+            <%= button_to 'Add to busket', add_to_cart_path(product.id), remote: true, class: 'btn btn-success' %>
           </div>
           <p style="clear:both;"><%= link_to "move to product's page", store_item_path(
                                                          platform: product.platform,
@@ -68,3 +25,5 @@
   <% end %>
   <div style="clear:left;"></div>
 </div>
+
+<%= render 'shared/modals' %>

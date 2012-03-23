@@ -13,17 +13,16 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def current_cart
-    if cookies[:cart_id] 
-      current_cart = Cart.find(cookies[:cart_id])
+    if cookies[:cart_id] && Cart.find_by_id(cookies[:cart_id])
+      cart = Cart.find(cookies[:cart_id])
+    elsif cookies[:permanent_session]
+      cart = Cart.create
+      cookies.permanent[:cart_id] = cart.id
     else
-      current_cart = Cart.create
-      if current_user && cookies[:permanent_session]
-        cookies.permanent[:cart_id] = current_cart.id
-      else
-        cookies[:cart_id] = current_cart.id
-      end
+      cart = Cart.create
+      cookies[:cart_id] = cart.id
     end
-    current_cart
+    @cart = cart
   end
 
   def authorize
