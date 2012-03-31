@@ -40,6 +40,7 @@ Gamershop::Application.routes.draw do
 
   resources :orders
   get 'profile/orders/:id' => 'orders#show', as: 'order'
+  post 'profile/orders/:id' => 'orders#purchase', as: 'purchase'
 
   resources :sessions
   delete 'logout' => "sessions#destroy", as: 'logout'

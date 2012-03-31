@@ -47,4 +47,7 @@ Gamershop::Application.configure do
     enable_starttls_auto: true
   }
 
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+  end
 end

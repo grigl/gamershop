@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
                        format: { with: /^[-\w\._]+$/i, 
                                  message: "should only contain letters, numbers, or .-_" }
   validates :password, length: { minimum: 6 },
-                       presence: { on: :create },
                        allow_blank: true
 
   before_create :generate_auth_token

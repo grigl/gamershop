@@ -16,7 +16,7 @@ class LineItemsController < ApplicationController
 
   def update
     line_item = LineItem.find_by_id(params[:id])
-    if params[:line_item][:quantity] == '0' || params[:line_item][:quantity] == nil
+    if params[:line_item][:quantity] == '0' || params[:line_item][:quantity] == ''
       line_item.destroy
     else
       line_item.update_attributes(params[:line_item])

@@ -1,22 +1,10 @@
-<script type="text/javascript" charset="utf-8">
-    $(function() {
-        $("#checkout_b").click(function() {
-          $('#order_modal').html('<%=j render 'orders/order_form' %>')
-        })
-      })  
-</script>
-
 <table class="table table-bordered">
       <% if @cart.line_items.any? %>
-        <legend>Your cart <button id="checkout_b" class="btn btn-info right" data-toggle="modal" href="#order_modal">Checkout</button></legend>
+        <legend>Your cart <%= link_to 'Order', new_order_path, remote: true, class: 'btn btn-info right', data: { toggle: 'modal', target: '#order_modal' } %></legend>
           <tbody>
-        <% @cart.line_items.first(3).each do |line_item| %>
-          <tr>
-            <th><%= line_item.product.title %></th>
-            <th><%= line_item.product.price %></th>
-            <th><%= line_item.quantity %></th>
-          </tr>
-        <% end %>
+            <tr>
+              <th>You have <%= @cart.count_items %><%= " item".pluralize(@cart.count_items) %> in your cart.</th>
+            </tr>
       <% else %>
         <legend>Your cart</legend>
           <tbody>
@@ -26,12 +14,8 @@
       <% end %>
   </tbody>
 </table>
-  <% if @cart.line_items.any? %>
-    <% if @cart.line_items.count > 3 %>
-      And some more products for a total price of:</br> 
-    <% else %>
+  <% if @cart.line_items.any? %> 
       Total price:</br>
-    <% end %>
       <button class="btn right" data-toggle="modal" href="#cart_modal">Edit cart</button>
-      <h3 class="red"><%= @cart.total_price %> rub.</h3>
+      <h3 class="red"><%= @cart.total_price %> $</h3>
   <% end %>

@@ -1,0 +1,25 @@
+<div class="well">
+  <div class="span4 right well" id="cart_form_container">
+    <%= render 'carts/cart_form' %>
+  </div>
+
+  <div>
+    <div>
+      <h2><%= @product.title %></h2>
+    </div></br>
+    <div class="left product_image">
+      <%= image_tag @product.image_url %>
+    </div>
+    <div class="product_description">
+      <%= @product.description %>
+    </div>
+    <div class="clear_left"></div>
+      <h2><%= @product.price %> $</h2>
+      <div>
+        <%= button_to 'Add to cart', add_to_cart_path(@product.id), remote: true, class: 'btn btn-success' %>
+      </div>
+  </div>
+
+</div>
+
+<%= render 'shared/modals' %>

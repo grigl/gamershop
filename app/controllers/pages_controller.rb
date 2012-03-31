@@ -9,10 +9,6 @@ class PagesController < ApplicationController
     @title = 'How to buy'
   end
 
-  def delivery
-    @title = 'Delivery'
-  end
-
   def about_us
     @title = 'About us'
   end

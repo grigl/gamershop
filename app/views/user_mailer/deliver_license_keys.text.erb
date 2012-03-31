@@ -1,0 +1,7 @@
+Hello <%= @user.username %>
+Keys for products you purchased:
+
+<% @keys.each do |key| %>
+  <%= key[:title] %> : <%= key[:license_key] %>
+
+<% end %>

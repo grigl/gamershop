@@ -1,14 +1,6 @@
 <a class="close" data-dismiss="modal">×</a>
 <h3>Your cart</h3>
 
-<script type="text/javascript" charset="utf-8">
-    $(function() {
-        $("#checkout_btn").click(function() {
-          $('#order_modal').html('<%=j render 'orders/order_form' %>')
-        })
-      })  
-</script>
-
 <% if @cart.line_items.any? %>
   <table class="table table-bordered">
     <tbody>
@@ -29,9 +21,9 @@
     </tbody>
   </table>
     
-  <button id="checkout_btn" class="btn btn-info right" data-dismiss="modal" data-toggle="modal" href="#order_modal" >Checkout</button>
+  <%= link_to 'Order', new_order_path, remote: true, class: 'btn btn-info right', data: { dismiss: 'modal', toggle: 'modal', target: '#order_modal' } %>
   <%= button_to 'Clear cart', @cart, method: :delete, confirm: 'Are you sure?', remote: true %>
-  Total price: <h3 class="red"><%= @cart.total_price %> rub.</h3>
+  Total price: <h3 class="red"><%= @cart.total_price %> $</h3>
 <% else %>
   <table class="table table-bordered">
     <tbody><tr><th>Cart is empty</th></tr></tbody>

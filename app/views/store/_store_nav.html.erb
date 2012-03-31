@@ -1,0 +1,33 @@
+<ul class="nav nav-top nav-tabs">
+  <% Product.platforms.each do |platform| %>
+    <% if platform == params[:platform] %>
+      <li class="active">
+        <%= link_to "#{platform} games", store_path(platform: platform, genre: params[:genre]) %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to "#{platform} games", store_path(platform: platform, genre: params[:genre]) %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<% if params[:platform] %>
+  <ul class="nav nav-top nav-tabs">
+    <% if params[:genre] %>
+      <li><%= link_to "All", store_path(platform: params[:platform], genre: '') %></li>
+    <% else %>
+      <li class="active"><%= link_to "All", store_path(platform: params[:platform]) %></li>
+    <% end %>    <% Product.genres.each do |genre| %>
+      <% if genre == params[:genre] %>
+        <li class="active">
+          <%= link_to "#{genre}", store_path(platform: params[:platform], genre: genre) %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "#{genre}", store_path(platform: params[:platform], genre: genre) %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>

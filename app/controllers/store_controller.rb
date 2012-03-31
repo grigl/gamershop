@@ -1,7 +1,7 @@
 class StoreController < ApplicationController
+  before_filter :current_cart
 
   def index
-    @cart = current_cart
     @title = "Home"
     if params[:order_by]
       order = params[:order_by]
@@ -22,6 +22,11 @@ class StoreController < ApplicationController
       products = products.genre(params[:genre])
     end
     @products = products.page(params[:page]).per_page(20)
+  end
+
+  def show
+    @product = Product.find_by_id(params[:id])
+    @title = "#{@product.title}"
   end
 
 end

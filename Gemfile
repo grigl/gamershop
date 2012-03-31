@@ -7,6 +7,8 @@ gem 'rails', '3.2.1'
 
 gem 'sqlite3'
 
+gem 'activemerchant'
+
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
@@ -26,7 +28,7 @@ end
 
 gem 'jquery-rails'
 
-gem 'rspec-rails', :group => [:test, :development]
+gem 'rspec-rails', group: [:test, :development]
 gem 'faker', group: :development
 group :test do
   gem 'spork'

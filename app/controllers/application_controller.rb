@@ -25,6 +25,21 @@ class ApplicationController < ActionController::Base
     @cart = cart
   end
 
+  def build_credit_card(params)
+    credit_card = ActiveMerchant::Billing::CreditCard.new(params)
+  end
+
+  def deliver_license_keys(order)
+    @user = User.find_by_id(order.user_id)
+    license_keys = []
+    order.line_items.each do |line_item|
+      line_item.quantity.times do
+        license_keys << { title: line_item.product.title, license_key: SecureRandom.urlsafe_base64 }
+      end
+    end
+    UserMailer.deliver_license_keys(@user, license_keys).deliver
+  end
+
   def authorize
     render 'shared/_404', status: 404, layout: false unless current_user
   end

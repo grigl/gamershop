@@ -1,0 +1,25 @@
+<%= will_paginate @products %>
+
+<div class="ordering">
+  <h4>Order by:</h4>
+  <% Product.ordering[:columns].each do |column| %>
+    <% if !params[:order_by] && column == Product.ordering[:default] %>
+      <h6><%= column %></h6>
+    <% elsif params[:order_by] == column %>
+      <h6><%= column %></h6>
+    <% else %>
+      <h6><%= link_to "#{column}", store_path(platform: params[:platform], genre: params[:genre], page: params[:page], order_by: column) %></h6>
+    <% end %>
+  <% end %>
+
+  <h4>Order:</h4>
+  <% ['asc', 'desc'].each do |ord| %>
+    <% if !params[:order] && ord == 'desc' %>
+      <h6><%= ord %></h6>
+    <% elsif params[:order] == ord %>
+      <h6><%= ord %></h6>
+    <% else %>
+      <h6><%= link_to "#{ord}", store_path(platform: params[:platform], genre: params[:genre], page: params[:page], order_by: params[:order_by], order: ord) %></h6>
+    <% end %>
+  <% end %>
+</div></br>

@@ -10,4 +10,10 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail to: user.email, subject: 'password reset'
   end
+
+  def deliver_license_keys(user, keys)
+    @user = user
+    @keys = keys
+    mail to: user.email, subject: 'Your keys from gamershop!'
+  end
 end

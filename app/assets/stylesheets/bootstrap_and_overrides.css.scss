@@ -58,6 +58,10 @@ header {
   clear:left;
 }
 
+.clear {
+  clear:both;
+}
+
 .modal {
   display: none;
 }
@@ -84,4 +88,16 @@ header {
     display: inline;
     margin-left: 5px;
   }
-}  
+}
+
+.product_description {
+  font-size:120%;
+}
+
+.product_image {
+  margin-right: 25px;
+}
+
+.store_nav {
+  margin-top: 5px;
+}    

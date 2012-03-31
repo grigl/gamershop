@@ -1,19 +1,27 @@
-<div class="span4 right well" id="cart_form_container">
-  <%= render 'carts/cart_form' %>
-</div>
-<div style="clear:right;"></div>
+
+  <div class="span4 right well" id="cart_form_container">
+    <%= render 'carts/cart_form' %>
+  </div>
+  <div class="span6">
+    <div class="well table-bordered store_nav">
+      <%= render 'store_nav' %>
+    </div>
+  </div>
+  <div class="clear"></div>
 
 <div class="well">
-  <%= render 'nav' %>
+  <div>
+    <%= render 'store_items_nav' %>
+  </div>
 
   <% @products.each do |product| %>
     <ul class="thumbnails left">
       <li class="span3">
         <div class="thumbnail">
           <%= image_tag product.image_url %>
-          <h2 class="left"><%= product.price %> rub.</h2>
+          <h2 class="left"><%= product.price %> $</h2>
           <div class="right">
-            <%= button_to 'Add to busket', add_to_cart_path(product.id), remote: true, class: 'btn btn-success' %>
+            <%= button_to 'Add to cart', add_to_cart_path(product.id), remote: true, class: 'btn btn-success' %>
           </div>
           <p style="clear:both;"><%= link_to "move to product's page", store_item_path(
                                                          platform: product.platform,

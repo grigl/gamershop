@@ -36,6 +36,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
+    @title = "Profile"
     @user = current_user
   end
 

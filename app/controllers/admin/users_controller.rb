@@ -14,7 +14,7 @@ class Admin::UsersController < Admin::AdminController
     @user = User.new(params[:user], without_protection: true)
 
     if @user.save
-      redirect_to users_path, notice: "user was sucessfully created"
+      redirect_to 'users_path', notice: "user was sucessfully created"
     else
       render :new
     end
