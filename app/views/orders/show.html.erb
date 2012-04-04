@@ -15,7 +15,7 @@
   <% end %>
 
   <table class="table table-bordered">
-    <h4>Products:</h4></br>
+    <h4>Products:</h4><br />
     <tbody>
       <% @order.line_items.each do |line_item| %>
         <tr>
@@ -28,41 +28,41 @@
   </table>
   <div>
     <h4>Total price: <%= @order.total_price %> $</h4>
-  </div></br>
+  </div><br />
 
   <% if @order.pay_status == 'unpaid' %>
   
-      <h4>Enter your cart information:</h4></br>
+      <h4>Enter your cart information:</h4><br />
       <%= form_for @order, url: purchase_path, method: 'post' do |f| %>
 
         <%= f.fields_for 'credit_card' do |ff| %>
         <div>
-          <%= ff.label 'First name:' %><br/>
+          <%= ff.label 'First name:' %>
           <%= ff.text_field :first_name %>
         </div>
 
         <div>
-          <%= ff.label 'Last Name:' %><br/>
+          <%= ff.label 'Last Name:' %>
           <%= ff.text_field :last_name %>
         </div>
 
         <div>
-          <%= ff.label 'Cart Type:' %><br/>
+          <%= ff.label 'Cart Type:' %>
           <%= ff.select :type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %>
         </div>
 
         <div>
-          <%= ff.label 'Cart Number:' %><br/>
+          <%= ff.label 'Cart Number:' %>
           <%= ff.text_field :number %>
         </div>
 
         <div>
-          <%= ff.label 'Cart Verification Value:' %><br/>
+          <%= ff.label 'Cart Verification Value:' %>
           <%= ff.text_field :verification_value %>
         </div>
 
         <div>
-          <%= ff.label 'cart expires on:' %><br/>
+          <%= ff.label 'cart expires on:' %>
           <%= ff.select :year, (2012..2022) %><%= ff.select :month, months_with_numbers %>
         </div>
       

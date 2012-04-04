@@ -1,0 +1,32 @@
+<div class="well">
+<% if @products %>
+
+  <div>
+    <%= render 'store/store_items_nav' %>
+  </div>
+
+  <% @products.each do |product| %>
+    <ul class="thumbnails left">
+      <li class="span3">
+        <div class="thumbnail">
+          <%= image_tag product.image_url %>
+          <h2 class="left"><%= product.price %> $</h2>
+          <div class="right">
+            <%= button_to 'Add to cart', add_to_cart_path(product.id), remote: true, class: 'btn btn-success' %>
+          </div>
+          <p style="clear:both;"><%= link_to "move to product's page", store_item_path(
+                                                         platform: product.platform,
+                                                         genre: product.genre,
+                                                         id: product.id ) %></p>
+        </div>
+      </li>
+    </ul>
+  <% end %>
+<% else %>
+  <h3>Sorry. Didn't find anything.</h3>
+<% end %>
+  <div style="clear:left;"></div>
+
+</div>
+
+<%= render 'shared/modals' %>

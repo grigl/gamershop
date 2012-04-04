@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  has_many :orders
+  has_many :orders, dependent: :destroy
 
   attr_accessible :email, :username, :password, :password_confirmation
   attr_accessible :all, as: :admin

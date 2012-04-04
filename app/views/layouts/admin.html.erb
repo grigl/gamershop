@@ -11,24 +11,22 @@
 <body>
 <div class="container">
 
-<header>
-  <%= render 'layouts/admin_header' %>
-</header>
+  <header>
+    <%= render 'layouts/admin_header' %>
+  </header>
 
-<div class="row">
-  <% flash.each do |name, msg| %>
-    <div class="span5">
-      <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-        <a class="close" data-dismiss="alert">×</a>
-        <%= msg %>
+  <div class="row">
+    <% flash.each do |name, msg| %>
+      <div class="span5">
+        <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+          <a class="close" data-dismiss="alert">×</a>
+          <%= msg %>
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
 
   <%= yield %>
-
-  <%= debug params %>
 
 </div>
 </body>

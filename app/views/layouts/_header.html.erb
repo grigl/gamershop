@@ -35,10 +35,10 @@
   </div>  
 
   <div class="span5">
-    <form class="form-search">
-      <button type="submit" class="btn right">Find!</button>
-      <input type="text" class="input-medium search-query right" placeholder="start typing smth..."> 
-    </form>
+      <%= form_tag search_path, method: 'get', class: 'form-search' do %> 
+        <%= submit_tag 'Find!', class: 'btn right' %>
+        <%= text_field_tag :search, "start typing smth...", class: "input-medium search-query right" %>
+      <% end %>
   </div>
   
 </div>

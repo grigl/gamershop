@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
       if response.success?
         @order.update_attribute(:pay_status, 'paid')
         deliver_license_keys(@order)
-        redirect_to root_path, notice: "purchase complete! Your keys was sent to your email!"
+        redirect_to root_path, notice: "purchase complete! Your keys were sent to your email!"
       else
         flash.now[:alert] = "Error: #{response.message}"
         render :show 

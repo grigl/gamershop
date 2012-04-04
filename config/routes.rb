@@ -1,29 +1,20 @@
-def platform_routes
-  platform_routes = /#{Product.platforms.join('|')}/
-end
-
-def genre_routes
-  genre_routes = /#{Product.genres.join('|')}/
-end
-
 Gamershop::Application.routes.draw do
+  get "searches/show"
 
   root to: 'store#index'
 
   match '(:platform)/(:genre)' => 'store#index', constraints: {
-                                                   platform: platform_routes,
-                                                   genre: genre_routes }, as: 'store'
+                                                   platform: /#{Product.platforms.join('|')}/,
+                                                   genre: /#{Product.genres.join('|')}/ }, as: 'store'
   match ':platform/:genre/:id' => 'store#show', constraints: {
-                                                   platform: platform_routes,
-                                                   genre: genre_routes,
+                                                   platform: /#{Product.platforms.join('|')}/,
+                                                   genre: /#{Product.genres.join('|')}/,
                                                    :id => /\d+/ }, as: 'store_item'
 
-  post 'add_to_cart/:id' => 'line_items#create', as: 'add_to_cart'
   resources :line_items
+  post 'add_to_cart/:id' => 'line_items#create', as: 'add_to_cart'
 
   resources :carts
-
-  post 'zzz/:id' => 'carts#zzz', as: 'zzz'
 
   match 'how_to_buy' => 'pages#how_to_buy', as: 'how_to_buy'
   match 'delivery' => 'pages#delivery', as: 'delivery'
@@ -44,6 +35,8 @@ Gamershop::Application.routes.draw do
 
   resources :sessions
   delete 'logout' => "sessions#destroy", as: 'logout'
+
+  get 'search' => "searches#show", as: 'search'
 
   resources :profiles
   get 'profile' => "profiles#show", as: 'profile'
