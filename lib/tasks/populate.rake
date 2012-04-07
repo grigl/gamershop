@@ -21,7 +21,7 @@ def make_products
   99.times do
     product = Product.new
     product.title = Faker::Lorem.sentence(2)
-    product.price = rand(1..99)
+    product.price = rand(99)
     product.platform = ['PC','PS3','XBOX'][rand(3)]
     product.released_date = '12.05.2011'
     product.genre = ['Shooter', 'Action', 'Sport', 'MMORPG', 'RPG', 'Strategy', 'Puzzle'][rand(7)]

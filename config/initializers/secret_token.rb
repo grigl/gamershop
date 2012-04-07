@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Gamershop::Application.config.secret_token = 'd7378bc0f0efbf454035d4009557ac4dc2c7452aa95ed6c76a9cf943b0b002452731bdd739403780b395dba1f623f06392f735be571aff81cd092c156054ba17'
+Gshop::Application.config.secret_token = 'b58b6bf04bd331f215b4d4c94137d9eb957b1c79909cc9709ffee23c98a5e94543617f5b8fbcfee3eece278bec06822ee29873a6ecf634c81a40b40e9d1ecaab'

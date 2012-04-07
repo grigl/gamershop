@@ -1,7 +1,17 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery
+
   layout 'application'
 
   private
+
+  def authorize
+    render 'shared/_404', status: 404, layout: false unless current_user
+  end
+
+  def admin_authorize
+    render 'shared/_404', status: 404, layout: false unless current_user && current_user.admin?
+  end
 
   def redirect_to_by_js(path)
     render js: "window.location = '#{path}'" 
@@ -39,13 +49,4 @@ class ApplicationController < ActionController::Base
     end
     UserMailer.deliver_license_keys(@user, license_keys).deliver
   end
-
-  def authorize
-    render 'shared/_404', status: 404, layout: false unless current_user
-  end
-
-  def admin_authorize
-    render 'shared/_404', status: 404, layout: false unless current_user && current_user.admin?
-  end
-
 end

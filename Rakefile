@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Gamershop::Application.load_tasks
+Gshop::Application.load_tasks
