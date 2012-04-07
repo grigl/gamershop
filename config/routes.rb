@@ -1,6 +1,4 @@
-Gamershop::Application.routes.draw do
-  get "searches/show"
-
+Gshop::Application.routes.draw do
   root to: 'store#index'
 
   match '(:platform)/(:genre)' => 'store#index', constraints: {

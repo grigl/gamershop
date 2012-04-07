@@ -5,12 +5,20 @@ gem 'rails', '3.2.1'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+group :development do
+  gem 'sqlite3'
+  gem 'faker'
+end
 
-gem 'activemerchant'
+group :test do
+  gem 'sqlite3'
+end
 
-gem 'will_paginate'
-gem 'bootstrap-will_paginate'
+group :production do
+  gem 'pg'
+  gem 'therubyracer-heroku'
+  gem 'faker'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -22,25 +30,13 @@ group :assets do
   # gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
-
-  gem 'bootstrap-sass'
+  gem 'bootstrap-sass', '>= 2.0.2'
 end
 
 gem 'jquery-rails'
-
-gem 'rspec-rails', group: [:test, :development]
-gem 'faker', group: :development
-
-group :test do
-  gem 'spork'
-  gem 'factory_girl_rails'
-  gem 'webrat'
-end
-
-group :production do
-  gem 'therubyracer-heroku', '0.8.1.pre3'
-  gem 'pg'
-end
+gem 'will_paginate'
+gem 'activemerchant'
+gem 'bootstrap-will_paginate'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
