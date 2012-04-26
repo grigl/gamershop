@@ -65,8 +65,8 @@ Gshop::Application.configure do
     port: 587,
     authentication: 'plain',
     domain: 'example.org',
-    user_name: 'griglmail@gmail.com',
-    password: 'wrle2la5go',
+    user_name: 'ironymanmail@gmail.com',
+    password: 'wrle2la5g2',
     enable_starttls_auto: true
   }
 
